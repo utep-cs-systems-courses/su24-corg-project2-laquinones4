@@ -1,0 +1,10 @@
+#ifndef buzzer_included
+#define buzzer_included
+#include "notes.h"
+
+extern int notesVT[] = {C, EM, C, EM, D7, C, EM, D7, C, EM, D7, C, EM, D7, C, C, EM, D7, C, EM, D7};
+
+void buzzer_init();
+void buzzer_set_period(short cycles);
+
+#endif
