@@ -7,7 +7,7 @@
 const int notesBYE[] = {Cn, Cn, G, G, A, A, G, F, F, E, E, D, D, Cn, G, G, F, F, E, E, D, G, G, F, F, E, E, D, Cn, Cn, G, G, A, A, G, F, F, E, E, D, D, Cn};
 
 char switch_state_down, switch_state_changed; /* effectively boolean */
-int count = 0;
+unsigned int count = 0;
 
 static char 
 switch_update_interrupt_sense()
@@ -41,7 +41,7 @@ void switch_interrupt_handler(){
   while (switch_state_down){
     //enableWDTInterrupts();
     count++;
-    if (count >= 30000){
+    if (count >= 35000){
       count = 0;
       notescount++;
     }
