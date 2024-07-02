@@ -41,7 +41,7 @@ void switch_interrupt_handler(){
   while (switch_state_down){
     //enableWDTInterrupts();
     count++;
-    if (count >= 26000){
+    if (count >= 30000){
       count = 0;
       notescount++;
     }
