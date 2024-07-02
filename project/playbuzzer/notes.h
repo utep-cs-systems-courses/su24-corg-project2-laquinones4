@@ -1,3 +1,6 @@
-#define C  2620
-#define EM 2020
-#define D7 10110
+#define Cn 262
+#define G  392
+#define A  440
+#define F  350
+#define E  330
+#define D  293

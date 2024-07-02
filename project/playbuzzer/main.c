@@ -6,7 +6,7 @@
 
 int main(void) {
   configureClocks();
-
+  
   buzzer_init();
  
 

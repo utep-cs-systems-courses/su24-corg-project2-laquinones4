@@ -4,9 +4,10 @@
 #include "buzzer.h"
 #include "notes.h"
 
-const int notesBYE[] = {C, EM, C, EM, D7, C, EM, D7, C, EM, D7, C, C, EM, D7, C, EM, D7};
+const int notesBYE[] = {Cn, Cn, G, G, A, A, G, F, F, E, E, D, D, Cn, G, G, F, F, E, E, D, G, G, F, F, E, E, D, Cn, Cn, G, G, A, A, G, F, F, E, E, D, D, Cn};
 
 char switch_state_down, switch_state_changed; /* effectively boolean */
+int count = 0;
 
 static char 
 switch_update_interrupt_sense()
@@ -29,26 +30,29 @@ switch_init()			/* setup switch */
   led_update();
 }
 
-int count = 0;
-int notescount = 0;
-
-void switch_interrupt_handler()
-{
+void switch_interrupt_handler(){
+  count = 0;
+  int notescount = 0;
   char p1val = switch_update_interrupt_sense();
   switch_state_down = (p1val & SW1) ? 0 : 1; /* 0 when SW1 is up */
   switch_state_changed = 1;
   led_update();
   
-  if (switch_state_down){
+  while (switch_state_down){
+    //enableWDTInterrupts();
     count++;
-    if (count >= 125){
+    if (count >= 26000){
       count = 0;
       notescount++;
     }
-    if (notescount >= 10)
-      notescount = 0;
     buzzer_set_period(notesBYE[notescount]);    
-  }else{
-    buzzer_set_period(0);
+    if (notescount > 41){
+      notescount = 0;
+    }
+     p1val = switch_update_interrupt_sense();
+     if (p1val & SW1)
+       break;
+     //playsong(1);
   }
+  buzzer_set_period(0);
 }

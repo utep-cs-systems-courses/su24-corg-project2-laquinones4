@@ -1,6 +1,24 @@
 #include <msp430.h>
 #include "libTimer.h"
 #include "buzzer.h"
+#include "notes.h"
+#include "switches.h"
+
+//const int notesBYE[] = {10000, Cn, Cn, G, G, A, A, G, F, F, E, E, D, D, C, G, G, F, F, E};
+
+//void playsong(int state){
+  //  int count = 0;
+  //  int notescount = 0;
+  //  char p1val = P1IN;
+  //  while (state){
+    //    notescount++;
+    //    buzzer_set_period(notesBYE[notescount]);
+    //    state = (p1val & SW1) ? 1 : 0; 
+    //  }
+
+  //  if (!state)
+    //    buzzer_set_period(0);
+  //}
 
 void buzzer_init()
 {
